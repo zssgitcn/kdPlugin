@@ -116,7 +116,7 @@ namespace kdPlugin
             string[] user = GlobalConfig.configFile[key];
             if (user != null)
             {
-                this.username.Text = user[0];
+                this.username.Text = user[0]; 
                 this.password.Text = user[1];
             }
         }
