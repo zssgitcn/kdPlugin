@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kdPlugin", "kdPlugin.csproj", "{D8051A37-7A36-487B-9E98-AA3B22BC379E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8051A37-7A36-487B-9E98-AA3B22BC379E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8051A37-7A36-487B-9E98-AA3B22BC379E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8051A37-7A36-487B-9E98-AA3B22BC379E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8051A37-7A36-487B-9E98-AA3B22BC379E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4AF37080-DC0C-4F34-BFEC-960FE70DAD68}
+	EndGlobalSection
+EndGlobal
