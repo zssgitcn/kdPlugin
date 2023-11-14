@@ -1,22 +1,24 @@
 ﻿using kdPlugin.Config;
+using kdPlugin.Utils;
 using RestSharp;
 using System.Net;
+using System.Reflection;
 
 namespace kdPlugin.Operation.Login
 {
     /// <summary>登录相关方法类</summary>
     public static class Login
     {
-        private static int timeout = 30 * 1000;
+        
         /// <summary>获取登录Cookie及将Cookie存储到全局变量中</summary>
         /// <param name="username">用户名</param>
         /// <param name="password">密码</param>
         /// <returns>是否成功</returns>
-        public static bool GetCookie(string username,string password)
+        public static bool GetCookie(string username,string password,CheckBox box,string serverName)
         {
-            var options = new RestClientOptions("http://42.51.28.64:8088")
+            var options = new RestClientOptions(GlobalConfig.MainUrl)
             {
-                MaxTimeout = timeout,
+                MaxTimeout = GlobalConfig.timeout,
                 ThrowOnAnyError = true,
             };
             try {
@@ -35,23 +37,22 @@ namespace kdPlugin.Operation.Login
                 else
                 {
                     GlobalConfig.cookie = Convert.ToString(cookies["PHPSESSID"]);
-                    options = new RestClientOptions(GlobalConfig.MainUrl)
+                    string htmlInfo = Util.getHtml(new RestRequest("/login/login.php", Method.Post));
+                    if (htmlInfo.IndexOf("index.php") >= 0)
                     {
-                        MaxTimeout = timeout,
-                    };
-                    client = new RestClient(options);
-                    request = new RestRequest("/login/login.php", Method.Post);
-                    request.AddHeader("Cookie", GlobalConfig.cookie);
-                    response = client.Execute(request);
-                    if (response.Content.IndexOf("index.php") >= 0)
-                    {
+                        if (box.Checked) 
+                        {
+                            htmlInfo = Util.getHtml(new RestRequest("function/Pets_Mod.php", Method.Post));
+                            string name = Util.MidStrEx(htmlInfo, "<div class=\"upet\">\r\n", "<br/>");
+                            Util.WriteUserConfig(string.Format("{0},{1},{2}[{3}]", username, password, name,serverName));
+                        }
                         return true;
                     }
-                    else {
+                    else 
+                    {
                         MessageBox.Show("登录失败，请检查用户名密码后重试！", "登录失败");
                         return false;
                     }
-                    
                 }
             }catch (Exception ex)
             {

@@ -28,24 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             loginButton = new Button();
             username = new TextBox();
             password = new TextBox();
             tab = new TabControl();
             tabPage1 = new TabPage();
             groupBox2 = new GroupBox();
+            refreshPlayInfo = new Button();
+            copy = new Label();
+            label11 = new Label();
+            vip = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            label5 = new Label();
+            skill = new ComboBox();
             jinbi = new Label();
             yuanbao = new Label();
             shuijing = new Label();
             zhuchong = new Label();
             name = new Label();
             groupBox1 = new GroupBox();
+            label4 = new Label();
             remember = new CheckBox();
             readConfig = new ComboBox();
             label1 = new Label();
             label3 = new Label();
-            panel2 = new Panel();
-            server1 = new RadioButton();
+            serverBox = new Panel();
+            ServerTest = new RadioButton();
+            Server1 = new RadioButton();
             label2 = new Label();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
@@ -56,16 +70,18 @@
             toolStripMenuItem1 = new ToolStripMenuItem();
             丢弃ToolStripMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
-            label4 = new Label();
-            comboBox1 = new ComboBox();
-            label5 = new Label();
+            panel3 = new Panel();
+            groupBox3 = new GroupBox();
+            log = new TextBox();
             tab.SuspendLayout();
             tabPage1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
-            panel2.SuspendLayout();
+            serverBox.SuspendLayout();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
+            panel3.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // loginButton
@@ -86,6 +102,7 @@
             username.Location = new Point(149, 75);
             username.Margin = new Padding(2, 3, 2, 3);
             username.Name = "username";
+            username.PlaceholderText = "请输入账号";
             username.Size = new Size(247, 33);
             username.TabIndex = 1;
             // 
@@ -96,6 +113,8 @@
             password.Location = new Point(149, 115);
             password.Margin = new Padding(2, 3, 2, 3);
             password.Name = "password";
+            password.PasswordChar = '*';
+            password.PlaceholderText = "请输入密码";
             password.Size = new Size(247, 33);
             password.TabIndex = 2;
             // 
@@ -128,8 +147,17 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(refreshPlayInfo);
+            groupBox2.Controls.Add(copy);
+            groupBox2.Controls.Add(label11);
+            groupBox2.Controls.Add(vip);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(label7);
+            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(label5);
-            groupBox2.Controls.Add(comboBox1);
+            groupBox2.Controls.Add(skill);
             groupBox2.Controls.Add(jinbi);
             groupBox2.Controls.Add(yuanbao);
             groupBox2.Controls.Add(shuijing);
@@ -141,57 +169,165 @@
             groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "玩家信息";
-            groupBox2.Enter += groupBox2_Enter;
+            // 
+            // refreshPlayInfo
+            // 
+            refreshPlayInfo.BackgroundImage = (Image)resources.GetObject("refreshPlayInfo.BackgroundImage");
+            refreshPlayInfo.BackgroundImageLayout = ImageLayout.Stretch;
+            refreshPlayInfo.Location = new Point(440, 15);
+            refreshPlayInfo.Name = "refreshPlayInfo";
+            refreshPlayInfo.Size = new Size(32, 32);
+            refreshPlayInfo.TabIndex = 24;
+            refreshPlayInfo.UseVisualStyleBackColor = true;
+            refreshPlayInfo.Click += refreshPlayInfo_Click;
+            // 
+            // copy
+            // 
+            copy.AutoSize = true;
+            copy.Cursor = Cursors.Hand;
+            copy.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            copy.ForeColor = SystemColors.Highlight;
+            copy.Location = new Point(385, 36);
+            copy.Name = "copy";
+            copy.Size = new Size(52, 27);
+            copy.TabIndex = 23;
+            copy.Text = "复制";
+            copy.Click += copy_Click;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Location = new Point(57, 216);
+            label11.Name = "label11";
+            label11.Size = new Size(104, 27);
+            label11.TabIndex = 22;
+            label11.Text = "VIP积分：";
+            // 
+            // vip
+            // 
+            vip.AutoSize = true;
+            vip.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            vip.Location = new Point(169, 216);
+            vip.Name = "vip";
+            vip.Size = new Size(0, 27);
+            vip.TabIndex = 21;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(71, 144);
+            label6.Name = "label6";
+            label6.Size = new Size(90, 27);
+            label6.TabIndex = 20;
+            label6.Text = "金   币：";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(71, 108);
+            label7.Name = "label7";
+            label7.Size = new Size(90, 27);
+            label7.TabIndex = 19;
+            label7.Text = "元   宝：";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(71, 72);
+            label8.Name = "label8";
+            label8.Size = new Size(90, 27);
+            label8.TabIndex = 18;
+            label8.Text = "水   晶：";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(71, 180);
+            label9.Name = "label9";
+            label9.Size = new Size(90, 27);
+            label9.TabIndex = 17;
+            label9.Text = "主   宠：";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(71, 36);
+            label10.Name = "label10";
+            label10.Size = new Size(92, 27);
+            label10.TabIndex = 16;
+            label10.Text = "用户名：";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(51, 264);
+            label5.Name = "label5";
+            label5.Size = new Size(112, 27);
+            label5.TabIndex = 15;
+            label5.Text = "使用技能：";
+            // 
+            // skill
+            // 
+            skill.DropDownStyle = ComboBoxStyle.DropDownList;
+            skill.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            skill.FormattingEnabled = true;
+            skill.Location = new Point(169, 261);
+            skill.Name = "skill";
+            skill.Size = new Size(247, 35);
+            skill.TabIndex = 14;
+            skill.SelectedValueChanged += skill_SelectedValueChanged;
             // 
             // jinbi
             // 
             jinbi.AutoSize = true;
             jinbi.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            jinbi.Location = new Point(41, 178);
+            jinbi.Location = new Point(169, 144);
             jinbi.Name = "jinbi";
-            jinbi.Size = new Size(90, 27);
+            jinbi.Size = new Size(0, 27);
             jinbi.TabIndex = 13;
-            jinbi.Text = "金   币：";
             // 
             // yuanbao
             // 
             yuanbao.AutoSize = true;
             yuanbao.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            yuanbao.Location = new Point(41, 136);
+            yuanbao.Location = new Point(169, 108);
             yuanbao.Name = "yuanbao";
-            yuanbao.Size = new Size(90, 27);
+            yuanbao.Size = new Size(0, 27);
             yuanbao.TabIndex = 11;
-            yuanbao.Text = "元   宝：";
             // 
             // shuijing
             // 
             shuijing.AutoSize = true;
             shuijing.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            shuijing.Location = new Point(41, 94);
+            shuijing.Location = new Point(169, 72);
             shuijing.Name = "shuijing";
-            shuijing.Size = new Size(90, 27);
+            shuijing.Size = new Size(0, 27);
             shuijing.TabIndex = 9;
-            shuijing.Text = "水   晶：";
             // 
             // zhuchong
             // 
             zhuchong.AutoSize = true;
             zhuchong.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            zhuchong.Location = new Point(41, 220);
+            zhuchong.Location = new Point(169, 180);
             zhuchong.Name = "zhuchong";
-            zhuchong.Size = new Size(90, 27);
+            zhuchong.Size = new Size(0, 27);
             zhuchong.TabIndex = 7;
-            zhuchong.Text = "主   宠：";
             // 
             // name
             // 
             name.AutoSize = true;
             name.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            name.Location = new Point(41, 52);
+            name.Location = new Point(169, 36);
             name.Name = "name";
-            name.Size = new Size(92, 27);
+            name.Size = new Size(0, 27);
             name.TabIndex = 5;
-            name.Text = "用户名：";
             // 
             // groupBox1
             // 
@@ -201,7 +337,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(loginButton);
-            groupBox1.Controls.Add(panel2);
+            groupBox1.Controls.Add(serverBox);
             groupBox1.Controls.Add(password);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(username);
@@ -212,9 +348,23 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "登录";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(31, 35);
+            label4.Name = "label4";
+            label4.RightToLeft = RightToLeft.No;
+            label4.Size = new Size(112, 27);
+            label4.TabIndex = 10;
+            label4.Text = "读取配置：";
+            label4.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // remember
             // 
             remember.AutoSize = true;
+            remember.Checked = true;
+            remember.CheckState = CheckState.Checked;
             remember.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             remember.Location = new Point(149, 209);
             remember.Name = "remember";
@@ -232,6 +382,7 @@
             readConfig.Name = "readConfig";
             readConfig.Size = new Size(247, 35);
             readConfig.TabIndex = 8;
+            readConfig.SelectedValueChanged += readConfig_SelectedValueChanged;
             // 
             // label1
             // 
@@ -254,27 +405,40 @@
             label3.TabIndex = 7;
             label3.Text = "区服：";
             // 
-            // panel2
+            // serverBox
             // 
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(server1);
-            panel2.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            panel2.Location = new Point(149, 151);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(247, 33);
-            panel2.TabIndex = 6;
+            serverBox.BorderStyle = BorderStyle.FixedSingle;
+            serverBox.Controls.Add(ServerTest);
+            serverBox.Controls.Add(Server1);
+            serverBox.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            serverBox.Location = new Point(149, 151);
+            serverBox.Name = "serverBox";
+            serverBox.Size = new Size(247, 33);
+            serverBox.TabIndex = 6;
             // 
-            // server1
+            // ServerTest
             // 
-            server1.AutoSize = true;
-            server1.Font = new Font("Microsoft YaHei UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            server1.Location = new Point(4, 3);
-            server1.Name = "server1";
-            server1.Size = new Size(58, 27);
-            server1.TabIndex = 5;
-            server1.TabStop = true;
-            server1.Text = "1区";
-            server1.UseVisualStyleBackColor = true;
+            ServerTest.AutoSize = true;
+            ServerTest.Font = new Font("Microsoft YaHei UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            ServerTest.Location = new Point(69, 2);
+            ServerTest.Name = "ServerTest";
+            ServerTest.Size = new Size(82, 27);
+            ServerTest.TabIndex = 6;
+            ServerTest.Text = "测试区";
+            ServerTest.UseVisualStyleBackColor = true;
+            // 
+            // Server1
+            // 
+            Server1.AutoSize = true;
+            Server1.Checked = true;
+            Server1.Font = new Font("Microsoft YaHei UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            Server1.Location = new Point(4, 2);
+            Server1.Name = "Server1";
+            Server1.Size = new Size(58, 27);
+            Server1.TabIndex = 5;
+            Server1.TabStop = true;
+            Server1.Text = "1区";
+            Server1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -291,7 +455,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(369, 506);
+            tabPage2.Size = new Size(490, 620);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "基本功能";
             tabPage2.UseVisualStyleBackColor = true;
@@ -300,7 +464,7 @@
             // 
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(369, 506);
+            tabPage3.Size = new Size(490, 620);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "战斗";
             tabPage3.UseVisualStyleBackColor = true;
@@ -309,7 +473,7 @@
             // 
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(369, 506);
+            tabPage4.Size = new Size(490, 620);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "特殊功能";
             tabPage4.UseVisualStyleBackColor = true;
@@ -318,7 +482,7 @@
             // 
             tabPage5.Location = new Point(4, 29);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(369, 506);
+            tabPage5.Size = new Size(490, 620);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "交易区";
             tabPage5.UseVisualStyleBackColor = true;
@@ -327,7 +491,7 @@
             // 
             tabPage6.Location = new Point(4, 29);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(369, 506);
+            tabPage6.Size = new Size(490, 620);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "使用说明";
             tabPage6.UseVisualStyleBackColor = true;
@@ -339,7 +503,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, 丢弃ToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1036, 28);
+            menuStrip1.Size = new Size(1027, 28);
             menuStrip1.TabIndex = 4;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -359,48 +523,46 @@
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(tab);
-            panel1.Location = new Point(12, 28);
+            panel1.Location = new Point(518, 31);
             panel1.Name = "panel1";
             panel1.Size = new Size(506, 657);
             panel1.TabIndex = 5;
             // 
-            // label4
+            // panel3
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(31, 35);
-            label4.Name = "label4";
-            label4.RightToLeft = RightToLeft.No;
-            label4.Size = new Size(112, 27);
-            label4.TabIndex = 10;
-            label4.Text = "读取配置：";
-            label4.TextAlign = ContentAlignment.MiddleRight;
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(groupBox3);
+            panel3.Location = new Point(5, 31);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(500, 657);
+            panel3.TabIndex = 6;
             // 
-            // comboBox1
+            // groupBox3
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(139, 252);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(247, 35);
-            comboBox1.TabIndex = 14;
+            groupBox3.Controls.Add(log);
+            groupBox3.Location = new Point(3, 3);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(492, 649);
+            groupBox3.TabIndex = 0;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "日志信息";
             // 
-            // label5
+            // log
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(21, 255);
-            label5.Name = "label5";
-            label5.Size = new Size(112, 27);
-            label5.TabIndex = 15;
-            label5.Text = "使用技能：";
+            log.BackColor = SystemColors.ButtonHighlight;
+            log.Location = new Point(6, 28);
+            log.Multiline = true;
+            log.Name = "log";
+            log.ReadOnly = true;
+            log.Size = new Size(490, 615);
+            log.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1036, 697);
+            ClientSize = new Size(1027, 690);
+            Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             Font = new Font("Microsoft YaHei UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
@@ -414,11 +576,14 @@
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            serverBox.ResumeLayout(false);
+            serverBox.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panel1.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -439,22 +604,36 @@
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem 丢弃ToolStripMenuItem;
         private Panel panel1;
-        private RadioButton server1;
         private Label label2;
         private Label label1;
-        private Panel panel2;
         private Label label3;
         private GroupBox groupBox1;
         private ComboBox readConfig;
-        private CheckBox remember;
         private GroupBox groupBox2;
-        private Label name;
-        private Label jinbi;
-        private Label yuanbao;
-        private Label shuijing;
-        private Label zhuchong;
         private Label label4;
         private Label label5;
-        private ComboBox comboBox1;
+        public Label name;
+        public Label jinbi;
+        public Label yuanbao;
+        public Label shuijing;
+        public Label zhuchong;
+        public ComboBox skill;
+        public Label label6;
+        public Label label7;
+        public Label label8;
+        public Label label9;
+        public Label label10;
+        public Label label11;
+        public Label vip;
+        private Label copy;
+        private Panel panel3;
+        private GroupBox groupBox3;
+        public TextBox log;
+        private TextBox textBox1;
+        public RadioButton ServerTest;
+        public RadioButton Server1;
+        public Panel serverBox;
+        public Button refreshPlayInfo;
+        public CheckBox remember;
     }
 }
