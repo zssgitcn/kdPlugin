@@ -1,14 +1,6 @@
 ﻿using kdPlugin.Config;
 using kdPlugin.Utils.GetFormControls;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.Control;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace kdPlugin.Operation.Login
 {
@@ -36,6 +28,7 @@ namespace kdPlugin.Operation.Login
             request.AddHeader("Cookie", GlobalConfig.cookie);
             var response = client.Execute(request);
             string petInfo = response.Content;
+            int i = 0;
         }
     }
 }

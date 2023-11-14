@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace kdPlugin.Config
+﻿namespace kdPlugin.Config
 {
     public static class GlobalConfig
     {

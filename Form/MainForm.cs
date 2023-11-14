@@ -1,9 +1,5 @@
 using kdPlugin.Config;
 using kdPlugin.Operation.Login;
-using RestSharp;
-using System.Diagnostics;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
 
 namespace kdPlugin
 {
